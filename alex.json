@@ -1,0 +1,161 @@
+{
+	"phases": [
+		{
+			"displayName": "Machine init",
+			"needsReboot": false,
+			"packageGroups": [
+				{
+					"groupName": "OS",
+					"packages": [
+						"powershell-core",
+						"7zip",
+						"powertoys",
+						"everything",
+						"microsoft-windows-terminal",
+						"jetbrainsmono",
+						"jetbrainsmononf",
+						"docker-desktop"
+					]
+				},
+				{
+					"groupName": "Internet",
+					"packages": [
+						"googlechrome",
+						"firefox",
+						"microsoftazurestorageexplorer",
+
+					]
+				},
+				{
+					"groupName": "Editors and Readers",
+					"packages": [
+						"notepadplusplus",
+						"foxitreader",
+						"vscode",
+						"paint.net",
+						"icofx",
+						"notepad2",
+						"obsidian",
+						"powerbi",
+						"sharex"
+					]
+				},
+				{
+					"groupName": "SDKs and Runtimes",
+					"packages": [
+						"dotnetcore-sdk",
+						"nodejs-lts",
+						"azure-cli"
+					]
+				},
+				{
+					"groupName": "Tooling",
+					"packages": [
+						"git",
+						"nodejs-lts",
+						"jq",
+						"azcopy10",
+						"terraform",
+						"gitkraken",
+						"postman",
+						"pping",
+						"telegram",
+						"kubernetes-helm",
+						"sql-server-management-studio",
+						"1password4",
+						"azure-data-studio",
+						"perfview",
+						"nvm",
+						"shotcut"
+					]
+				}
+			],
+			"packageProviders": [
+				"Nuget"
+			],
+			"dotnetTools": [
+				"dotnetCampus.UpdateAllDotNetTools",
+				"apiport",
+				"dotnet-ef",
+				"dotnet-outdated-tool",
+				"microsoft.dotnet-httprepl",
+				"try-convert",
+				"upgrade-assistant"
+			],
+			"poshModules": [
+				{
+					"name": "Az",
+					"allowClobber": true,
+					"scope": "CurrentUser",
+					"force": true
+				},
+				{
+					"name": "ExchangeOnlineManagement",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				},
+				{
+					"name": "Az.CosmosDb",
+					"allowClobber": true,
+					"scope": "CurrentUser",
+					"force": true
+				},
+				{
+					"name": "PowerShellGet",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				},
+				{
+					"name": "posh-git",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				},
+				{
+					"name": "oh-my-posh",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				},
+				{
+					"name": "Terminal-Icons",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				},
+				{
+					"name": "Devdeer.Azure",
+					"allowClobber": false,
+					"scope": "AllUsers",
+					"force": true
+				}
+			],
+			"optionalWindowsFeatures": [				
+				"Microsoft-Windows-Subsystem-Linux"				
+			],
+			"dismFeatures": [
+				"VirtualMachinePlatform",
+				"Microsoft-Windows-Subsystem-Linux",
+				"NetFx3"
+			],
+			"environmentVariables": [
+				{
+					"key": "DOCKER_BUILDKIT",
+					"value": 1
+				}
+			],
+			"postCommands": [
+				"docker run --name redis-dev -p 6379:6379 --restart always -d redis",
+				"docker run --name mssql -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Sql-Server-Dev' -e 'MSSQL_AGENT_ENABLED=true' -p 1433:1433 -d --restart always acrdevdeer.azurecr.io/mssql-fts:2019-ubuntu",
+				"wsl --set-default-version 2"
+			]
+		},
+		{
+			"displayName": "Nuget Package Providers",
+			"needsReboot": false
+			
+		}
+	]
+}
